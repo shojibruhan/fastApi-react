@@ -12,7 +12,7 @@ class FruitResponse(BaseModel):
     fruits: List[Fruit]
 
 origins= [
-    "http://localhost:3000"
+    "http://localhost:5173"
 ]
 
 

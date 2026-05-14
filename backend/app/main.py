@@ -1,43 +1,36 @@
 from fastapi import FastAPI, status
-from fastapi.middleware.cors import CORSMiddleware
+# from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
+# from .dataabase.data import CATEGORY_DEFINITIONS
+from .dataabase.data import CATEGORY_DEFINITIONS, TEST_DATA, PRODUCT_DATABASE
 
 app = FastAPI()
 
-class Fruit(BaseModel):
-    name: str
-
-class FruitResponse(BaseModel):
-    fruits: List[Fruit]
-
-origins= [
-    "http://localhost:5173"
-]
 
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins= origins,
-    allow_methods= ['*'],
-    allow_headers= ['*']
-)
+# origins= [
+#     "http://localhost:5173"
+# ]
 
-db= {
-    "fruits": []
-}
+
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins= origins,
+#     allow_methods= ['*'],
+#     allow_headers= ['*']
+# )
+
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+    # data= PRODUCT_DATABASE.get(101)
+    # response_data= {
+    #     "name": data['name'],
+    #     **data['fields']
+    # }
 
+    
 
-@app.post("/fruits")
-def create_fruit(fruit: Fruit):
-    db["fruits"].append(fruit)
-    return fruit
-
-@app.get("/fruits", response_model= FruitResponse)
-def get_fruits():
-    return FruitResponse(fruits= db["fruits"])
+    return PRODUCT_DATABASE
 
